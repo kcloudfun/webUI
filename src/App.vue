@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view/><!--内置组件：不需要引入就能使用的，像router-view-->
   </div>
 </template>
 
