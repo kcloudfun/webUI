@@ -14,6 +14,9 @@
     <p v-if="case1">v-if</p>
     <!-- v-show只是隐藏，dom元素还在，v-if是彻底不存在-->
     <p v-show="case2">v-show</p>
+
+    <!-- 事件的修改器 -->
+    <input @keydown.enter="keyDown"/>
   </div>
 </template>
 <script>
@@ -30,6 +33,9 @@ export default {
   methods: {
     dosome() {
       console.log("1111");
+    },
+    keyDown() {
+      console.log("13424");
     }
   }
 };
