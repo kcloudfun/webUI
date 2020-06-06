@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import test from "@/components/test/test.vue";//测试页面主页
 import homePage from '@/components/view/homePage.vue'
+import login from '@/components/view/Login'
+import registered from '@/components/view/Registered'
 
 Vue.use(Router)
 
@@ -13,9 +14,14 @@ export default new Router({
       component: homePage
     },
     {
-      path: '/test',
-      name: 'test',
-      component: test
+      path: '/login',
+      name: 'login',
+      component: login
+    },
+    {
+      path: '/registered',
+      name: 'registered',
+      component: registered
     }
   ]
 })
