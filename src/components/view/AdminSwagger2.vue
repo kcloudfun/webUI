@@ -6,16 +6,10 @@
       </el-aside>
 
       <el-container>
-        <el-header>
-          <myHeader></myHeader>
-        </el-header>
-
         <el-main>
-          <el-table :data="tableData">
-            <el-table-column prop="date" label="日期" width="140"></el-table-column>
-            <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-            <el-table-column prop="address" label="地址"></el-table-column>
-          </el-table>
+          <div>
+            <iframe :src="url" id="adminSwagger2Iframe" frameborder="0"></iframe>
+          </div>
         </el-main>
 
         <el-footer>
@@ -31,21 +25,26 @@ import myHeader from "@/components/view/MyHeader";
 import myAside from "@/components/view/MyAside";
 
 export default {
-  name: "homePage",
+  name: "description",
   components: {
     myFooter,
     myHeader,
     myAside
   },
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄"
-    };
     return {
-      tableData: Array(5).fill(item)
+      url: "http://localhost:8001/swagger-ui.html#/"
     };
+  },
+  mounted() {
+    /**
+     * iframe-宽高自适应显示
+     */
+    const oIframe = document.getElementById("adminSwagger2Iframe");
+    const deviceWidth = document.documentElement.clientWidth;
+    const deviceHeight = document.documentElement.clientHeight;
+    oIframe.style.width = Number(deviceWidth) - 260 + "px"; //数字是页面布局宽度差值
+    oIframe.style.height = Number(deviceHeight) - 120 + "px"; //数字是页面布局高度差
   }
 };
 </script>
@@ -58,5 +57,9 @@ export default {
 
 .el-aside {
   color: #333;
+}
+
+.el-row {
+  margin-bottom: 20px;
 }
 </style>
