@@ -5,6 +5,8 @@ import login from '@/components/view/Login'
 import registered from '@/components/view/Registered'
 import description from '@/components/view/Description'
 import adminSwagger2 from '@/components/view/AdminSwagger2'
+import publishBlog from '@/components/view/PublishBlog'
+import userBlogs from '@/components/view/UserBlogs'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
       path: '/adminSwagger2',
       name: 'adminSwagger2',
       component: adminSwagger2
+    },
+    {
+      path: '/publishBlog',
+      name: 'publishBlog',
+      component: publishBlog
+    },
+    {
+      path: '/userBlogs',
+      name: 'userBlogs',
+      component: userBlogs
     }
   ]
 })

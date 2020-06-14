@@ -6,10 +6,12 @@
       </el-aside>
 
       <el-container>
+        <el-header>
+          <myHeader></myHeader>
+        </el-header>
+
         <el-main>
-          <div>
-            <iframe :src="url" id="adminSwagger2Iframe" frameborder="0"></iframe>
-          </div>
+          <blogList :blogs="blogs" :editAble="true"></blogList>
         </el-main>
 
         <el-footer>
@@ -23,28 +25,29 @@
 import myFooter from "@/components/view/MyFooter";
 import myHeader from "@/components/view/MyHeader";
 import myAside from "@/components/view/MyAside";
+import blogList from "@/components/view/BlogList";
+import blogApis from "../api/blogApis";
 
 export default {
-  name: "description",
+  name: "userBlogs",
   components: {
     myFooter,
     myHeader,
-    myAside
+    myAside,
+    blogList
   },
   data() {
     return {
-      url: "http://localhost:8001/admin/swagger-ui.html#/"
+      blogs: []
     };
   },
   mounted() {
-    /**
-     * iframe-宽高自适应显示
-     */
-    const oIframe = document.getElementById("adminSwagger2Iframe");
-    const deviceWidth = document.documentElement.clientWidth;
-    const deviceHeight = document.documentElement.clientHeight;
-    oIframe.style.width = Number(deviceWidth) - 260 + "px"; //数字是页面布局宽度差值
-    oIframe.style.height = Number(deviceHeight) - 120 + "px"; //数字是页面布局高度差
+    let self = this;
+    blogApis.getMyBlogs("1111").then(res => {
+      if (200 == res.status) {
+        self.blogs = res.data.data;
+      }
+    });
   }
 };
 </script>

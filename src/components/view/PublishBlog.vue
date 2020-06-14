@@ -6,9 +6,14 @@
       </el-aside>
 
       <el-container>
+        <el-header>
+          <myHeader></myHeader>
+        </el-header>
+
         <el-main>
+          <editBlog @catchData="catchData($event)" :initData="blog"></editBlog>
           <div>
-            <iframe :src="url" id="adminSwagger2Iframe" frameborder="0"></iframe>
+            <el-button class="publishBtn" @click="publish" type="info" round>立即发布</el-button>
           </div>
         </el-main>
 
@@ -23,28 +28,38 @@
 import myFooter from "@/components/view/MyFooter";
 import myHeader from "@/components/view/MyHeader";
 import myAside from "@/components/view/MyAside";
+import editBlog from "@/components/view/EditBlog";
+import blogApis from "../api/blogApis";
 
 export default {
-  name: "description",
+  name: "publishBlog",
   components: {
     myFooter,
     myHeader,
-    myAside
+    myAside,
+    editBlog
   },
   data() {
     return {
-      url: "http://localhost:8001/admin/swagger-ui.html#/"
+      blog: {
+        title: "",
+        content: ""
+      }
     };
   },
-  mounted() {
-    /**
-     * iframe-宽高自适应显示
-     */
-    const oIframe = document.getElementById("adminSwagger2Iframe");
-    const deviceWidth = document.documentElement.clientWidth;
-    const deviceHeight = document.documentElement.clientHeight;
-    oIframe.style.width = Number(deviceWidth) - 260 + "px"; //数字是页面布局宽度差值
-    oIframe.style.height = Number(deviceHeight) - 120 + "px"; //数字是页面布局高度差
+  methods: {
+    //接收子组件内容并赋值
+    catchData(el) {
+      let self = this;
+      self.blog.title = el.title;
+      self.blog.content = el.editorContent;
+    },
+    publish(event) {
+      let self = this;
+      blogApis.addBlog(self.blog).then(res => {
+        console.log("请求成功")
+      })
+    }
   }
 };
 </script>
@@ -61,5 +76,10 @@ export default {
 
 .el-row {
   margin-bottom: 20px;
+}
+
+.publishBtn {
+  margin-bottom: 100px;
+  margin-top: 80px;
 }
 </style>
