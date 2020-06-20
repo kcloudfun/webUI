@@ -11,8 +11,15 @@ function getMyBlogs(params) {
     };
     return fetchGet(url, obj)
 }
+function deleteBlog(params) {
+    let url = '/blog/blog/v1/delete/' + params;
+    let obj = {
+    };
+    return fetchPost(url, obj)
+}
 
 export default {
     addBlog,
-    getMyBlogs
+    getMyBlogs,
+    deleteBlog
 }

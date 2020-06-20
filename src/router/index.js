@@ -7,6 +7,7 @@ import description from '@/components/view/Description'
 import adminSwagger2 from '@/components/view/AdminSwagger2'
 import publishBlog from '@/components/view/PublishBlog'
 import userBlogs from '@/components/view/UserBlogs'
+import blogListRefresh from '@/components/view/BlogListRefresh'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/userBlogs',
       name: 'userBlogs',
       component: userBlogs
-    }
+    },
+    {
+      path: '/blogListRefresh',
+      name: 'blogListRefresh',
+      component: blogListRefresh
+    },
   ]
 })
