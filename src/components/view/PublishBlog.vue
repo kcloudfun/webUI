@@ -11,10 +11,11 @@
         </el-header>
 
         <el-main>
-          <editBlog @catchData="catchData($event)" :initData="blog"></editBlog>
-          <div>
+          <editBlog v-show="showPublish" @catchData="catchData($event)" :initData="blog"></editBlog>
+          <div v-show="showPublish">
             <el-button class="publishBtn" @click="publish" type="info" round>立即发布</el-button>
           </div>
+          <el-link v-show="showLink" @click="toMyBlogs" type="success">发布成功，点击跳转至我的博客</el-link>
         </el-main>
 
         <el-footer>
@@ -44,7 +45,9 @@ export default {
       blog: {
         title: "",
         content: ""
-      }
+      },
+      showPublish: true,
+      showLink: false
     };
   },
   methods: {
@@ -57,8 +60,12 @@ export default {
     publish(event) {
       let self = this;
       blogApis.addBlog(self.blog).then(res => {
-        console.log("请求成功")
-      })
+        self.showPublish = false;
+        self.showLink = true;
+      });
+    },
+    toMyBlogs() {
+      this.$router.push({ path: "/userblogs" });
     }
   }
 };

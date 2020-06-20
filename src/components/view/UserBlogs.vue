@@ -11,7 +11,13 @@
         </el-header>
 
         <el-main>
-          <blogList :blogs="blogs" :editAble="true"></blogList>
+          <blogDetail v-show="showDetail" :details="details"></blogDetail>
+          <blogList
+            v-show="showList"
+            :blogs="blogs"
+            :editAble="true"
+            @sendDetail="sendDetail($event)"
+          ></blogList>
         </el-main>
 
         <el-footer>
@@ -26,6 +32,7 @@ import myFooter from "@/components/view/MyFooter";
 import myHeader from "@/components/view/MyHeader";
 import myAside from "@/components/view/MyAside";
 import blogList from "@/components/view/BlogList";
+import blogDetail from "@/components/view/BlogDetail";
 import blogApis from "../api/blogApis";
 
 export default {
@@ -34,11 +41,15 @@ export default {
     myFooter,
     myHeader,
     myAside,
-    blogList
+    blogList,
+    blogDetail
   },
   data() {
     return {
-      blogs: []
+      blogs: [],
+      showDetail: false,
+      showList: true,
+      details: {}
     };
   },
   mounted() {
@@ -48,6 +59,14 @@ export default {
         self.blogs = res.data.data;
       }
     });
+  },
+  methods: {
+    sendDetail(row) {
+      let self = this;
+      self.details = row;
+      self.showDetail = true;
+      self.showList = false;
+    }
   }
 };
 </script>
