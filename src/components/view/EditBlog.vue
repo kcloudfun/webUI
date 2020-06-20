@@ -6,6 +6,13 @@
     <div id="wangeditor">
       <div ref="editorElem" style="text-align:left;"></div>
     </div>
+    <div style="text-align:left;margin-top: 20px;">
+      学科类型：
+      <el-radio-group v-model="radio" @change="typeChange">
+        <el-radio :label="1">Java</el-radio>
+        <el-radio :label="2">Python</el-radio>
+      </el-radio-group>
+    </div>
   </div>
 </template>
 <script>
@@ -16,9 +23,11 @@ export default {
   data() {
     return {
       editor: null,
+      radio: null,
       blog: {
         editorContent: "",
-        title: ""
+        title: "",
+        type: ""
       }
     };
   },
@@ -33,6 +42,14 @@ export default {
 
   methods: {
     titleChange() {
+      this.$emit("catchData", this.blog);
+    },
+    typeChange() {
+      if (this.radio == "1") {
+        this.blog.type = "Java";
+      } else {
+        this.blog.type = "Python";
+      }
       this.$emit("catchData", this.blog);
     }
   },

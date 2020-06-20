@@ -44,7 +44,8 @@ export default {
     return {
       blog: {
         title: "",
-        content: ""
+        content: "",
+        type: ""
       },
       showPublish: true,
       showLink: false
@@ -56,6 +57,7 @@ export default {
       let self = this;
       self.blog.title = el.title;
       self.blog.content = el.editorContent;
+      self.blog.type = el.type;
     },
     publish(event) {
       let self = this;
