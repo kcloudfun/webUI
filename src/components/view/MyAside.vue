@@ -1,19 +1,12 @@
 <template>
   <div>
     <el-menu :default-openeds="['1', '3']" @select="handleSelect">
-      <el-menu-item index="description">网站介绍</el-menu-item>
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-setting"></i>Swagger2
-        </template>
-        <el-menu-item index="adminSwagger2">admin</el-menu-item>
-      </el-submenu>
       <el-submenu index="2">
         <template slot="title">
           <i class="el-icon-menu"></i>博客广场
         </template>
-        <el-menu-item index="adminSwagger2">Java</el-menu-item>
-        <el-menu-item index="adminSwagger2">Python</el-menu-item>
+        <el-menu-item index="Java">Java</el-menu-item>
+        <el-menu-item index="Python">Python</el-menu-item>
       </el-submenu>
       <el-submenu index="3">
         <template slot="title">
@@ -57,10 +50,14 @@ export default {
         this.$router.push({ path: "/description" });
       } else if (key == "adminSwagger2") {
         this.$router.push({ path: "/adminSwagger2" });
-      }else if (key == "publishBlog") {
+      } else if (key == "publishBlog") {
         this.$router.push({ path: "/publishBlog" });
-      }else if (key == "userblogs") {
+      } else if (key == "userblogs") {
         this.$router.push({ path: "/userblogs" });
+      } else if (key == "Java") {
+        this.$router.push({ path: "/blogSquare/Java" });
+      } else if (key == "Python") {
+        this.$router.push({ path: "/blogSquare/Python" });
       }
     }
   }

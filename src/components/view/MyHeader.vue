@@ -1,7 +1,7 @@
 <template>
   <div style="text-align: right; font-size: 15px">
     <el-dropdown @command="handleCommand">
-      <i class="el-icon-setting" style="margin-right: 15px"></i>
+      <i class="el-icon-user-solid" style="margin-right: 15px;"></i>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="login">登录</el-dropdown-item>
         <el-dropdown-item command="logout">注销</el-dropdown-item>

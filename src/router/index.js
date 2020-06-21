@@ -8,6 +8,7 @@ import adminSwagger2 from '@/components/view/AdminSwagger2'
 import publishBlog from '@/components/view/PublishBlog'
 import userBlogs from '@/components/view/UserBlogs'
 import blogListRefresh from '@/components/view/BlogListRefresh'
+import blogSquare from '@/components/view/BlogSquare'
 
 Vue.use(Router)
 
@@ -52,6 +53,16 @@ export default new Router({
       path: '/blogListRefresh',
       name: 'blogListRefresh',
       component: blogListRefresh
+    },
+    {
+      path: '/blogSquare/Java',
+      name: 'blogSquare',
+      component: blogSquare
+    },
+    {
+      path: '/blogSquare/Python',
+      name: 'blogSquare',
+      component: blogSquare
     },
   ]
 })
